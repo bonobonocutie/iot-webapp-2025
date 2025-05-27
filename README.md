@@ -129,7 +129,7 @@
 - 문장 끝에 ; 생략이 가능하지만 되도록 사용할 것
 - 키워드
 
-    <img src="./image/web0001.png" width="600">
+    <img src="./image/web01.png">
 
 - 화면메시지박스 : alert()
 - 디버깅 출력 : console.log()
@@ -211,7 +211,7 @@
 - 모든 DOM 객체에 접근할때 `$(선택자|아이디|클래스)` 로 처리
 - jQuery on('이벤트', function() {}) 또는 이벤트(function () {})
 
-    <img src="./image/web0002.png" width="600">
+    <img src="./image/web02.png">
 
 - [소스](./day02/html09.html)
 
@@ -256,7 +256,7 @@
 #### 부트스트랩 학습
 - 버튼 사용법
 
-    <img src="./image/web04.png" width="600">
+    <img src="./image/web04.png">
 
 - 미디어쿼리 : 웹페이지 사이즈에 따른 사용법을 위해 필요
     - Bootstrap에서 sm, md, lg 등의 infix를 사용할 경우가 많음  
@@ -304,7 +304,7 @@
     - Progress, Spinners : 프로그레스바, 대기용 컴포넌트
     - Carousel : 이미지 갤러리
 
-    <img src="./image/web05.png" width="600">
+    <img src="./image/web05.png">
 
 - 아이콘
     - [사이트](https://icons.getbootstrap.com/)
@@ -338,4 +338,40 @@
 
         https://github.com/user-attachments/assets/c7e04184-62cb-4ef3-9eeb-c97061b65a9a
 
+
+
+## 4일차
+### 프론트엔드 활용
+- HTML5 + CSS3 + JS 응용예제
+- Modern Business 템플릿 클로닝
+    - https://startbootstrap.com/template/modern-business  
+
+    <img src="./image/web06.png">
+
+#### HTML5 Responsive Web template 
+- https://html5up.net/
+
+#### Modern Business 클로닝
+1. 모든 웹페이지 시작은 index.* (.html, .asp, .jsp, .cshtml...)
+2. 폴더 구성 : css, js, assets
+3. favicon.ico 구성
+4. Bootstrap 다운로드 후 폴더에 구성(not CDN)
+    - bootstrap-5.3.6-dist.zip
+5. Bootstrap Icon 링크 클릭 다운로드
+    - https://github.com/twbs/icons/releases/tag/v1.13.1
+    - bootstrap-icons-1.13.1.zip
+    - css 폴더 아래 fonts 폴더 생성
+    - bootstrap-icons.woff, bootstrap-icons.woff2 붙여넣기
+6. body 마지막 Bootstrap js 링크 추가
+7. body 내의 태그영역으로 나눠서 클로닝
+    - div, main
+        - div, nav
+        - div, header
+        - div, feature
+        - div, testimonial
+        - div, blog_section
+    - div, footer
+8. 태그 내에 Bootstrap 클래스 적용
+9. Bootstrap Example의 테마 적용
+10. 전체화면
 
