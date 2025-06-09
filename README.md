@@ -379,3 +379,248 @@
     https://github.com/user-attachments/assets/8ca0ee1e-1d7f-4391-a372-78e2958b7f1f
 
 
+## 5일차
+### 웹개발 기술 용어
+- SPA : Single Page Applicaiton. 페이지를 이동해도 새로고침 없이 한페이지에서 작동하는 웹
+- MPA : Multi Page Applicaiton. 전통적인 여러페이지로 작동하는 웹
+- CSR : Client-Side Rendering. 대부분의 SPA가 동작하는 방식. 렌더링을 브라우저에서 처리
+- SSR : Server-Side Rendering. MPA가 위주. HTML을 서버에서 생성후 전달(naver, google 등 포털)
+
+### ASP.NET Core 
+- ASP : Active Server Page. Classic ASP라고 부름. 동적인 웹페이지를 만드는 기술
+- 프론트엔드(HTML + CSS + JS) 상에서 동작하는 기술을 동적 웹페이지라고 부르지 않음
+- 동적 웹페이지 : 사용자가 웹서버에 요청을 해서 값이 변경되는 것
+
+    <img src="./image/web07.png">
+
+- IIS : Internet Information Service. MS가 윈도우 운영체제에 포함시킨 `웹 서버`
+    - 윈도우 프로그램 추가 제거(appwiz.cpl)
+    - 윈도우 기능 켜기/끄기 > 인터넷 정보 서비스 클릭 후 확인
+
+- 윈도우 설정은 일반 사용자용, 제어판은 개발자용
+    - 제어판 > Windows Tools > IIS(인터넷 정보 서비스) 관리자
+    
+    <img src="./image/web08.png">
+
+- Java가 1995년 출현하면서 Classic ASP, Classic VB 등의 옛날 MS기술이 위협
+- 2000년 초반에 .NET 프레임워크를 출시
+    - C#, VB(.NET) 새로운 언어 들이 포함됨
+    - 위의 언어들로 개발할 수 있는 웹 기술인 ASP.NET 등장
+    - 이후 언어는 계속 발전
+    - 2016년에 크로스플랫폼 ASP.NET Core
+    - 2020년에 .NET Framework(Windows전용)을 .NET 5.0(크로스플랫폼)로 변경
+
+#### ASP.NET Core 장점
+- 빠르다 : 초창기 ASP.NET은 C#으로 Winforms 만드는 것처럼 개발(개발생산성은 좋지만 렌더링 속도가 무지하게 느렸음). MVC모델로 분리하면서 윈폼식 개발을 제거
+- 오픈소스 : Java JSP/Spring, Python Flask 등이 오픈소스로 발전하니까 MS도 오픈소스 전향
+- 크로스플랫폼 : Windows에서만 동작하던 걸, MacOS, Linux 등으로 확대시킴
+- 종속성 주입 : Dependencty Injection. Spring 쪽에 특화되던 기술을 접목해옴. 개발시간 절약
+- 개발용 웹서버 : IIS가 Visual Studio에 포함. 웹서버 설정을 할 필요가 없음
+- 클라우드 친화적 : MS Azure 등의 클라우드와 연계가 쉬움
+- MVC 모델 : Model View Controller를 따로 개발. Spring Boot도 동일
+- 최적화가 잘 되어 있음
+
+#### ASP.NET Core 활용처
+- `웹 사이트` 개발 : 기본적인 내용
+- `풀스택` 개발 : 프론트엔드(React, Vue, Angular js) + 백엔드(ASP.NET Core)
+- `API 서버` 개발 : TMDB 영화 데이터 조회 API, Youtube API, 데이터포털 API 등의 데이터만 주고받는 서비스 개발
+- 도메인특화 솔루션 개발 : MES, ERP, SmartFactory, SmartShip 등
+- 이커머스 개발 : 쇼핑몰, 온라인 서점, 여행예매 사이트 등
+
+#### ASP.NET Core 시작
+1. Visual Studio 시작 > 새 프로젝트 만들기
+2. ASP.NET Core 웹앱(Model-View-Controller) 선택
+3. 프로젝트 이름, 위치, 솔루션 이름 입력 
+4. 추가정보
+    - HTTPS : 보안 인증서를 신청, 다운로드 설정을 해야 함. 복잡, 체크해제
+    - 최상위 문 사용 안함 만 체크 
+5. 빌드 후 실행 
+6. properties > launchSetting.json 에서 자신의 포트번호 확인
+7. 기본 ASP.NET Core 웹앱에 포함된 프론트엔드 라이브러리
+    - Bootstrap 5.1.0
+    - jQuery 3.6.0
+    - 최신버전으로 변경하고 싶으면 다운로드 받아서 구성하면 됨
+    - 경로 - \wwwroot\lib\bootstrap\dist
+
+#### ASP.NET Core 프로젝트 구조
+- Properties > launchSettings.json - 웹서버 실행 설정
+- wwwroot - 정적 리소스 구성한 폴더
+    - css : 웹페이지 추가적인 css
+    - js : 웹페이지 추가적인 js
+    - lib : Bootstrap, jQuery 등의 라이브러리 포함된 폴더
+    - favicon.ico : 웹페이지 대표 아이콘
+- 종속성 : .NET 관련 NuGet 패키지 라이브러리(종속성)
+- Controllers : MVC 패턴 중 Controller 관리
+    - HomeController : Controller postfix는 제거하고 호출. Views에 postfix를 제거한 폴더 존재    
+    - 메서드 : 메서드 이름과 동일한 cshtml이 존재
+    - 비즈니스 로직이 포함
+- Models : MVC 중 Model
+    - 데이터, DB관련된 소스 포함
+- Views : MVC 중 View 역할
+    - Controller에 포함된 클래스와 동일한 이름의 폴더, cshtml이 존재
+    - cshtml : HTML + ASP.NET 기술이 포함된 웹페이지
+        - @, asp-append-version, asp-controller, asp-action 등의 속성
+    - _Layout.cshtml : 전체 HTML 틀을 구성. @RenderBody()에서 표현
+    - 웹사이트는 중간 content 이외는 모양이 항상 동일
+    - cshtml 중 _로 시작하는 파일은 여러번 공유하겠다는 뜻
+- appsettings.json : 로그 등 애플리케이션 설정
+- Program.cs : C# 프로그램 시작점. 실제 웹앱이 시작될 때 필요한 초기화 담당
+    - 중요 소스
+
+    ```cs
+    // ...
+    app.UseStaticFiles();   // 정적인 HTML,CSS,JS를 사용하겠다
+    app.UseRouting();       // 라우팅으로 URL을 사용하겠다
+    app.UseAuthorization(); // 권한 설정을 사용하겠다
+    // http://localhost:port/Home/Index/2 와 같이 URL을 사용하겠다
+    // RESTful URL -> Rest API를 위한 요소 중 하나
+    // Program.cs 에서 중요한 파트
+    // controller의 Home, action의 Index는 Default값
+    app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
+    // ...
+    ```
+
+#### ASP.NET Core 페이지 생성법
+1. 기존 Controller가 존재할 때
+    - cshtml에 asp-controller, asp-action 속성 추가
+    - Controller에 asp-action의 속성값과 동일한 메서드 추가
+    - Views 폴더에 같은 이름의 cshtml을 생성, 작성
+
+2. Controller가 없을때 1
+    - Controllers 폴더에서 컨트롤러 생성
+    - MVC 컨트롤러 - 비어있음 선택
+    - SideController 클래스 생성
+    - Index() 메서드에서 오른쪽 버튼 뷰 추가 선택
+    - Razor 뷰 - 비어있음 선택
+    - Index.cshtml 생성 후 작성
+
+3. **Controller가 없을때 2**
+    - `EntityFramework 사용하여 뷰가 포함된 MVC 컨트롤러` 또는 `읽기/쓰기 동작이 포함된 컨트롤러` 중 선택
+    - BoardController 클래스 생성
+
+        <img src="./image/web09.png">
+
+    - 메서드 Index() 부터 Delete() 까지 총 8개 메서드 생성
+    - Models 폴더에서 모델 Board.cs 추가
+    - 인덱스 마다 뷰 추가. Razor 뷰 선택(Razor 뷰 - 비어있음 아님!)
+
+        <img src="./image/web10.png">
+
+        <img src="./image/web11.png">
+
+        - 템플릿 : Create, Delete, Details, List, Edit (DB의 CRUD와 매핑)
+        - 모델 클래스 : MVC, MVVN에서 Model 클래스가 포함되어야 함 (DB 설정이 필요)
+
+    - Razor 뷰 선택
+    - Index.cshtml 생성
+    - _Layout.cshtml 에 내비게이션 메뉴 추가
+
+#### ASP.NET Core MVC
+
+<img src="./image/web12.png">
+
+- MVVM과 MVC 패턴의 구조에대 설명할 수 있어야 함!
+- 현재 기본적인 웹개발의 표준. Java도 Spring Boot MVC
+- 프론트엔드가 심각한 스파게티 코드였으면 현재는 최소화하고 있음
+- Razor 구문 : @로 시작하는 C# 문법에 대한 이해
+
+- DB 연동방법
+    - 전통적인 방법 : WPF나 윈앱에서 연동방법. SQL쿼리문을 직접 작성, 실행
+    - 현대적인 방법 : EntityFramework 방식. 쿼리를 사용하지 않음
+        - DB First : DB를 설계해 놓고, 연결, 사용하는 방식
+        - Code First : 모델 클래스만 만들어 놓고, EF가 DB에 테이블을 자동 생성
+
+
+#### ASP.NET Core MVC - Kelly Portfolio 디자인 클로닝
+1. Kelly-1.0.0.zip 다운로드
+2. 정적파일 분석
+3. index.html 오픈, VS Views > Shared > _Layout.cshtml 디자인 태그 옮기기
+4. wwwroot 내 vendor 에서 Bootstrap 관련 폴더삭제   
+    - php 관련도 추후 삭제 필요
+5. _Layout.cshtml 작업
+
+    <img src="./image/web13.png">
+
+
+## 11일차
+### ASP.NET Core API서버(Web API)
+- 2000년도 초반, 웹서비스 이름의 변형
+- 웹을 통해서 데이터전달이 목적
+- API서버, WebAPI, RESTful Service, OpenAPI(공용)... 
+- 초기에는 XML을 데이터 전달로 사용
+- XML의 방대한 데이터크기때문에 현재는 JSON으로 거의 이전(XML의 1/3수준)
+- WebAPI 서버 사용처
+    - 하나의 서비스로 여러가지 앱에서 같이 사용할때
+    - 회사 ERP를 웹사이트, 모바일, PC앱으로 동시에 사용할때
+    - 알라딘 웹사이트, 모바일, PC책뷰어...
+
+#### Web API 만들기
+1. ASP.NET Core 웹 API로 프로젝트 생성
+2. Swagger 화면 확인
+3. Prgram.cs 소스 분석
+4. WeatherForecast 모델 클래스 확인
+5. WeatherForecastController 클래스 확인
+
+#### 웹서비스를 테스트 툴
+1. 웹브라우저 - URL을 입력, json뷰어확인
+2. Swagger UI - Visual Studio에 포함
+3. [Postman](https://www.postman.com/) - 가장 기능이 다양
+
+    <img src="./image/web29.png" width="600">
+
+#### 웹서비스 4가지 메서드
+- 일반 웹사이트에서의 GET/POST는 동일
+- `GET` - 리소스(데이터) 조회
+- `POST` - 요청 데이터 처리(저장, 수정, 삭제). 주로 등록에 사용
+- `PUT` - 리소스 대체, 주로 수정에 사용
+- `DELETE` - 리소스 삭제, 주로 삭제에 사용
+- PATCH - 리소스 부분 변경(수정). 거의 사용안함. PATCH메서드를 지원하지 않으면 PUT으로 대체
+
+#### WebAPI CRUD 작업 연습
+|API|설명|Request body|Response body|
+|:--|:--|:--|:--|
+|GET ~/api/books|모든 책정보 가져오기|None|책정보 배열|
+|GET ~/api/books/{id}|특정 책정보 가져오기|None|책정보 한 건|
+|POST ~/api/books|새 책 추가|Book 데이터|Book 데이터|
+|PUT ~/api/books/{id}|기존책 수정|Book|None|
+|DELET ~/api/books/{id}|기존책 삭제|None|None|
+
+<img src="./image/web26.png" width="600">
+
+1. WebAPI 프로젝트 생성
+2. Models.Book 모델 클래스 생성
+3. EntityFramework NuGet패키지 설치
+    - Microsoft.EntityFrameworkCore
+    - Pomelo.EntityFrameworkCore.MySql    
+4. appsettings.json DB연결문자열 추가
+5. MySQL Book 테이블 생성
+6. Models.AppDbContext 클래스 생성
+7. Program.cs AppDbContext 초기화 추가
+8. 스캐폴딩으로 Controller 생성
+    - API > EntityFramework 사용 동작이 포함된 API컨트롤러 선택
+
+    <img src="./image/web27.png" width="600">
+9. 서버 실행
+
+    <img src="./image/web28.png" width="600">
+
+#### OpenAPI 형식 WebAPI 연습
+1. IoT 센서데이터를 웹API 서비스
+2. Python에서 더미데이터 100만건 생성
+3. WebAPI 프로젝트 생성
+4. EntityFramework NuGet패키지 설치
+5. appsettings.json DB연결문자열 추가
+6. MySQL iot_datas 테이블 생성
+7. Models.iot_datas 클래스 생성
+8. Models.AppDbContext 클래스 생성
+9. Program.cs AppDbContext 초기화 추가
+10. 스캐폴딩으로 Controller 생성
+    - Get 메서드 외 모두 삭제
+11. Get 메서드 파라미터 추가, 쿼리 실행 로직 추가
+12. Swagger UI에서 테스트
+
+    <img src="./image/web30.png" width="600">
+
+13. 웹브라우저 실행 확인
+
+    <img src="./image/web31.png" width="600">
